@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# Streaming Site UI (React)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A front-end practice build of a movie-streaming home page, styled after the
+familiar streaming-service layout. It has a hero carousel, horizontally
+scrolling movie rows and a watch page that plays a local video clip. Movie data
+lives in a local file (`src/dummyData.js`); there is no API or backend.
 
-## Available Scripts
+## What's in it
 
-In the project directory, you can run:
+- **Hero carousel.** Full-width slides with title, rating, runtime, cast and genres, built with `react-slick` (`components/homes`).
+- **Movie rows.** "Upcoming", "Latest" and "Recommended" rows rendered from the same `Upcomming` slider component, plus a "Trending" section (`components/upcoming`, `components/trending`).
+- **Watch page.** `/singlepage/:id` looks up the movie by id and plays its MP4 with the native `<video>` player (`components/watch/SinglePage.jsx`).
+- **Responsive header.** Hamburger toggle for the nav menu on small screens.
 
-### `npm start`
+## Tech stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- React (Create React App)
+- React Router 5 (`Switch` / `component` route API)
+- `react-slick` + `slick-carousel`
+- Plain CSS per component, Font Awesome icons
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Project layout
 
-### `npm test`
+```
+src/
+  App.js              router: home page and watch page
+  home/HomePage.jsx   page composition
+  components/         header, homes (hero), upcoming, trending, watch, footer
+  dummyData.js        movie metadata
+public/images, public/video   artwork and sample clips (~23 MB of video)
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Running locally
 
-### `npm run build`
+Requires Node.js.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+npm install
+npm start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The app opens at http://localhost:3000.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Note: `package.json` pairs React 19 with React Router 5. If `npm install`
+reports peer-dependency conflicts, `npm install --legacy-peer-deps` installs
+the versions as listed.
